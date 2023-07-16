@@ -11,10 +11,10 @@ export default function Product() {
   const [single, setSingle] = useState(0);
   const [deleteItem, setDeleteItem] = useState("");
   const [deleteActive, setDeleteActive] = useState(false);
-  const [updateActive, setUpdateActive] = useState(false)
+  const [updateActive, setUpdateActive] = useState(false);
   const [newValue, setNewValue] = useState({
     price: null,
-    stock: null
+    stock: null,
   });
 
   const { id } = useParams();
@@ -26,7 +26,7 @@ export default function Product() {
   }, []);
 
   const handleInput = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setNewValue((prev) => {
       return { ...prev, [name]: value };
     });
@@ -40,10 +40,9 @@ export default function Product() {
   };
 
   const handleSubmit = () => {
-    updateData(id, newValue.price, newValue.stock)
-    setUpdateActive(!updateActive)
+    updateData(id, newValue.price, newValue.stock);
+    setUpdateActive(!updateActive);
   };
-
 
   return (
     <>
@@ -59,17 +58,19 @@ export default function Product() {
           <p className="mt-20">{single.description}</p>
           <p className="m-5 font-bold">Price: ${single.price}</p>
           <p className="m-5">Stok: {single.stock}</p>
-          {updateActive && (<div>
-            <p>Stock Terbaru: {newValue.stock}</p>
-            <p>Harga Terbaru: {newValue.price}</p>
-          </div>)}
+          {updateActive && (
+            <div>
+              <p>Stock Terbaru: {newValue.stock}</p>
+              <p>Harga Terbaru: {newValue.price}</p>
+            </div>
+          )}
           <div className="m-5">
             <label htmlFor="">Masukan Stok Terbaru: </label>
-            <input type="number" name="stock" onChange={handleInput}/>
+            <input type="number" name="stock" onChange={handleInput} />
           </div>
           <div className="m-5">
             <label htmlFor="">Update Harga Barang: </label>
-            <input type="number" name="price" onChange={handleInput}/>
+            <input type="number" name="price" onChange={handleInput} />
           </div>
           <div>
             {deleteActive && (
@@ -82,7 +83,7 @@ export default function Product() {
               </div>
             )}
           </div>
-          <Button string="Update Stock" click={handleSubmit}/>
+          <Button string="Update Stock" click={handleSubmit} />
           <ModalDelete click={handleDelete} />
         </div>
       </div>
