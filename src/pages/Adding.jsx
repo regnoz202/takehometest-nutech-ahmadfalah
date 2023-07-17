@@ -6,6 +6,7 @@ import axios from "axios";
 
 export default function Adding() {
   const [image, setImage] = useState()
+  const [activeNew, setActiveNew] = useState(false)
   const [formValue, setFormValue] = useState({
     id: 101,
     title: "",
@@ -44,13 +45,15 @@ export default function Adding() {
   const handleSubmit = (e)=>{
     e.preventDefault()
     addData()
+    setActiveNew(!activeNew)
     console.log(addData());
   }
 
   return (
     <>
       <Navbar />
-      <div className="max-w-2xl mx-auto mt-10">
+      {activeNew && (
+        <div className="max-w-2xl mx-auto mt-10">
         Barang baru
         <p className="mt-5">Nama Barang:</p>
         <p>{formValue.title}</p>
@@ -60,6 +63,7 @@ export default function Adding() {
         <p>${formValue.stock}</p>
         <h2 className="mt-8 font-bold ">Penambahan barang dapat dilihat pada console</h2>
       </div>
+      )}
       <div className="max-w-2xl p-4 mx-auto mt-20">
       <h1 className="my-5 font-bold">FORM TAMBAH BARANG</h1>
         <FormAdd handleInput={handleInput} onSubmit={handleSubmit} handleUpload={handleUploadImage} hasilImage={image}/>
