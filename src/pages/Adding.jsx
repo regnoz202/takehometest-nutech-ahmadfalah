@@ -8,7 +8,7 @@ export default function Adding() {
   const [image, setImage] = useState()
   const [activeNew, setActiveNew] = useState(false)
   const [formValue, setFormValue] = useState({
-    id: 101,
+    id: null,
     title: "",
     price: null,
     stock: null,
